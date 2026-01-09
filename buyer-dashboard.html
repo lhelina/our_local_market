@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Our Local Market - Buyer Dashboard</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/farmer-style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      .buyer-header {
+        background: linear-gradient(135deg, #2f8f44 0%, #267a38 100%);
+      }
+      .buyer-sidebar {
+        background: #1a2526;
+      }
+      .buyer-card {
+        border-left: 4px solid #2f8f44;
+      }
+      .sidebar {
+        width: 250px;
+      }
+      .main-content {
+        margin-left: 250px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-container">
+      <aside class="sidebar buyer-sidebar">
+        <div class="logo">
+          <h2>🛒 Buyer Dashboard</h2>
+          <p class="role">Welcome Shopper</p>
+        </div>
+
+        <nav class="nav-menu">
+          <a href="#" class="nav-item active">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+          </a>
+          <a href="shop.html" class="nav-item">
+            <i class="fas fa-store"></i>
+            <span>Shop Products</span>
+          </a>
+          <a href="cart.html" class="nav-item">
+            <i class="fas fa-shopping-cart"></i>
+            <span>My Cart</span>
+            <span class="badge" id="cartCount">0</span>
+          </a>
+          <a
+            href="#"
+            class="nav-item"
+            onclick="event.preventDefault(); showProfileModal();"
+          >
+            <i class="fas fa-user"></i>
+            <span>My Account</span>
+          </a>
+          <a href="#" class="nav-item" id="logoutBtn">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+          </a>
+        </nav>
+
+        <div class="user-info">
+          <div class="user-avatar">
+            <img
+              src="https://ui-avatars.com/api/?name=Buyer&background=2196F3&color=fff"
+              alt="Buyer"
+              id="userAvatar"
+            />
+          </div>
+          <div class="user-details">
+            <h4 id="buyerName">Loading...</h4>
+            <p id="buyerEmail">...</p>
+            <span class="status online">● Active</span>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="top-bar buyer-header">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input
+              type="text"
+              placeholder="Search products..."
+              onclick="window.location.href='index.html'"
+            />
+          </div>
+          <div class="top-actions">
+            <button class="btn-add" onclick="window.location.href='index.html'">
+              <i class="fas fa-store"></i> Shop Now
+            </button>
+            <div class="notifications">
+              <i class="fas fa-bell"></i>
+              <span class="badge">2</span>
+            </div>
+            <div class="user-menu">
+              <img
+                src="https://ui-avatars.com/api/?name=Buyer&background=2196F3&color=fff"
+                alt="User"
+                id="headerAvatar"
+              />
+            </div>
+          </div>
+        </header>
+
+        <div class="dashboard-content">
+          <div class="stats-grid">
+            <div class="stat-card buyer-card">
+              <div
+                class="stat-icon"
+                style="background: rgba(33, 150, 243, 0.1)"
+              >
+                <i class="fas fa-shopping-cart" style="color: #2196f3"></i>
+              </div>
+              <div class="stat-info">
+                <h3 id="totalOrders">5</h3>
+                <p>Total Orders</p>
+              </div>
+              <span class="stat-trend up">+0</span>
+            </div>
+
+            <div class="stat-card buyer-card">
+              <div class="stat-icon" style="background: rgba(76, 175, 80, 0.1)">
+                <i class="fas fa-check-circle" style="color: #4caf50"></i>
+              </div>
+              <div class="stat-info">
+                <h3 id="completedOrders">2</h3>
+                <p>Completed</p>
+              </div>
+              <span class="stat-trend up">+0</span>
+            </div>
+
+            <div class="stat-card buyer-card">
+              <div class="stat-icon" style="background: rgba(255, 193, 7, 0.1)">
+                <i class="fas fa-clock" style="color: #ffc107"></i>
+              </div>
+              <div class="stat-info">
+                <h3 id="pendingOrders">1</h3>
+                <p>Pending</p>
+              </div>
+              <span class="stat-trend">0</span>
+            </div>
+
+            <div class="stat-card buyer-card">
+              <div
+                class="stat-icon"
+                style="background: rgba(156, 39, 176, 0.1)"
+              >
+                <i class="fas fa-star" style="color: #9c27b0"></i>
+              </div>
+              <div class="stat-info">
+                <h3 id="averageRating">0.0</h3>
+                <p>Average Rating</p>
+              </div>
+              <span class="stat-trend up">+0.0</span>
+            </div>
+          </div>
+
+          <div class="content-grid">
+            <div class="card" style="grid-column: span 2">
+              <div class="card-header">
+                <h3>Recent Orders</h3>
+                <a href="#" class="view-all">View All</a>
+              </div>
+              <div class="orders-list" id="recentOrders">
+                <div
+                  class="order-item"
+                  onclick="viewOrderDetails('ORD-7850')"
+                  style="
+                    cursor: pointer;
+                    padding: 15px;
+                    border-bottom: 1px solid #eee;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                  "
+                >
+                  <div>
+                    <h4 style="margin: 0 0 5px 0; color: #333">ORD-7850</h4>
+                    <p style="margin: 0; font-size: 12px; color: #666">
+                      Tomatoes (2kg), Onions (3kg), Potatoes (5kg)
+                    </p>
+                    <p style="margin: 5px 0 0 0; font-size: 12px; color: #888">
+                      2024-01-18 •
+                      <span
+                        class="status-badge delivered"
+                        style="
+                          padding: 2px 8px;
+                          border-radius: 12px;
+                          font-size: 10px;
+                          background: #d4edda;
+                          color: #155724;
+                        "
+                        >Delivered</span
+                      >
+                    </p>
+                  </div>
+                  <div style="text-align: right">
+                    <h4 style="margin: 0; color: #2f8f44">320 ETB</h4>
+                    <button
+                      style="
+                        margin-top: 5px;
+                        padding: 5px 10px;
+                        background: #2f8f44;
+                        color: white;
+                        border: none;
+                        border-radius: 4px;
+                        font-size: 12px;
+                        cursor: pointer;
+                      "
+                    >
+                      View Details
+                    </button>
+                  </div>
+                </div>
+
+                <div
+                  class="order-item"
+                  onclick="viewOrderDetails('ORD-7849')"
+                  style="
+                    cursor: pointer;
+                    padding: 15px;
+                    border-bottom: 1px solid #eee;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                  "
+                >
+                  <div>
+                    <h4 style="margin: 0 0 5px 0; color: #333">ORD-7849</h4>
+                    <p style="margin: 0; font-size: 12px; color: #666">
+                      Green Peppers (2kg), Garlic (1kg)
+                    </p>
+                    <p style="margin: 5px 0 0 0; font-size: 12px; color: #888">
+                      2024-01-17 •
+                      <span
+                        class="status-badge processing"
+                        style="
+                          padding: 2px 8px;
+                          border-radius: 12px;
+                          font-size: 10px;
+                          background: #cce5ff;
+                          color: #004085;
+                        "
+                        >Processing</span
+                      >
+                    </p>
+                  </div>
+                  <div style="text-align: right">
+                    <h4 style="margin: 0; color: #2f8f44">180 ETB</h4>
+                    <button
+                      style="
+                        margin-top: 5px;
+                        padding: 5px 10px;
+                        background: #2f8f44;
+                        color: white;
+                        border: none;
+                        border-radius: 4px;
+                        font-size: 12px;
+                        cursor: pointer;
+                      "
+                    >
+                      View Details
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="side-cards">
+              <div class="card">
+                <div class="card-header">
+                  <h3>Quick Actions</h3>
+                </div>
+                <div class="quick-actions">
+                  <button
+                    class="quick-action-btn"
+                    onclick="window.location.href='index.html'"
+                  >
+                    <i class="fas fa-store"></i>
+                    <span>Browse Products</span>
+                  </button>
+                  <button
+                    class="quick-action-btn"
+                    onclick="window.location.href='cart.html'"
+                  >
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>View Cart</span>
+                  </button>
+                  <button class="quick-action-btn" onclick="updateProfile()">
+                    <i class="fas fa-user-edit"></i>
+                    <span>Update Profile</span>
+                  </button>
+                  <button class="quick-action-btn" onclick="viewOrderHistory()">
+                    <i class="fas fa-history"></i>
+                    <span>Order History</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header">
+                  <h3>Recommended Products</h3>
+                </div>
+                <div class="recommended-products">
+                  <div
+                    class="recommended-item"
+                    onclick="window.location.href='index.html?product=tomatoes'"
+                    style="
+                      cursor: pointer;
+                      padding: 10px;
+                      border-bottom: 1px solid #eee;
+                      display: flex;
+                      align-items: center;
+                      gap: 10px;
+                    "
+                  >
+                    <img
+                      src="./pictures/tomatoes.jpg"
+                      alt="Organic Tomatoes"
+                      style="
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 6px;
+                        object-fit: cover;
+                      "
+                    />
+                    <div style="flex: 1">
+                      <h5 style="margin: 0 0 3px 0; font-size: 14px">
+                        Organic Tomatoes
+                      </h5>
+                      <p style="margin: 0; font-size: 12px; color: #666">
+                        Sebeta Farm
+                      </p>
+                      <p
+                        style="
+                          margin: 3px 0 0 0;
+                          font-size: 12px;
+                          color: #2f8f44;
+                          font-weight: 600;
+                        "
+                      >
+                        25 ETB/kg
+                      </p>
+                    </div>
+                    <div style="font-size: 12px; color: #ffc107">★ 4.5</div>
+                  </div>
+
+                  <div
+                    class="recommended-item"
+                    onclick="window.location.href='index.html?product=onions'"
+                    style="
+                      cursor: pointer;
+                      padding: 10px;
+                      border-bottom: 1px solid #eee;
+                      display: flex;
+                      align-items: center;
+                      gap: 10px;
+                    "
+                  >
+                    <img
+                      src="./pictures/onions.jpg"
+                      alt="Fresh Onions"
+                      style="
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 6px;
+                        object-fit: cover;
+                      "
+                    />
+                    <div style="flex: 1">
+                      <h5 style="margin: 0 0 3px 0; font-size: 14px">
+                        Fresh Onions
+                      </h5>
+                      <p style="margin: 0; font-size: 12px; color: #666">
+                        Debre Zeit Farm
+                      </p>
+                      <p
+                        style="
+                          margin: 3px 0 0 0;
+                          font-size: 12px;
+                          color: #2f8f44;
+                          font-weight: 600;
+                        "
+                      >
+                        20 ETB/kg
+                      </p>
+                    </div>
+                    <div style="font-size: 12px; color: #ffc107">★ 4.2</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="js/data.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        if (!checkAuth() || !checkUserType("buyer")) {
+          return;
+        }
+
+        updateCartCount();
+
+        updateUserInfo();
+
+        const profileBtn = document.getElementById("profileBtn");
+        if (profileBtn) {
+          profileBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            updateProfile();
+          });
+        }
+      });
+
+      function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const cartCountElements = document.querySelectorAll("#cartCount");
+        cartCountElements.forEach((el) => (el.textContent = totalItems));
+      }
+
+      function updateUserInfo() {
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (user) {
+          const buyerName = document.getElementById("buyerName");
+          const buyerEmail = document.getElementById("buyerEmail");
+          const userAvatar = document.getElementById("userAvatar");
+          const headerAvatar = document.getElementById("headerAvatar");
+
+          if (buyerName) buyerName.textContent = user.fullName;
+          if (buyerEmail) buyerEmail.textContent = user.email;
+
+          if (userAvatar) {
+            userAvatar.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(
+              user.fullName
+            )}&background=2196F3&color=fff`;
+          }
+          if (headerAvatar) {
+            headerAvatar.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(
+              user.fullName
+            )}&background=2196F3&color=fff`;
+          }
+        }
+      }
+
+      async function updateProfile() {
+        showProfileModal();
+      }
+
+      async function showProfileModal() {
+        const modal = document.createElement("div");
+        modal.id = "profileModal";
+        modal.style.cssText =
+          "position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 10000;";
+
+        try {
+          const token = localStorage.getItem("token");
+          const response = await fetch(
+            "http://localhost:5000/api/auth/profile",
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+              },
+            }
+          );
+
+          const data = await response.json();
+          const user = data.user || JSON.parse(localStorage.getItem("user"));
+
+          modal.innerHTML = `
+            <div style="background: white; border-radius: 12px; width: 90%; max-width: 600px; max-height: 90vh; overflow-y: auto;">
+              <div style="padding: 1.5rem; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="margin: 0;">My Profile</h3>
+                <button onclick="closeProfileModal()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666;">&times;</button>
+              </div>
+              <form id="profileForm" style="padding: 1.5rem;">
+                <div style="margin-bottom: 1rem;">
+                  <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Full Name *</label>
+                  <input type="text" id="fullName" name="fullName" value="${
+                    user.fullName || ""
+                  }" required 
+                         style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 6px;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                  <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email</label>
+                  <input type="email" id="email" value="${
+                    user.email || ""
+                  }" disabled 
+                         style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 6px; background: #f5f5f5; cursor: not-allowed;">
+                  <small style="color: #666;">Email cannot be changed</small>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                  <div>
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" value="${
+                      user.phone || ""
+                    }" required 
+                           style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 6px;">
+                  </div>
+                  <div>
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">City *</label>
+                    <input type="text" id="city" name="city" value="${
+                      user.city || ""
+                    }" required 
+                           style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 6px;">
+                  </div>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                  <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Address</label>
+                  <textarea id="address" name="address" rows="2" 
+                            style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 6px;">${
+                              user.address || ""
+                            }</textarea>
+                </div>
+                <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                  <button type="button" onclick="closeProfileModal()" 
+                          style="flex: 1; padding: 0.75rem; border: 1px solid #ddd; border-radius: 6px; background: #f8f9fa; cursor: pointer;">
+                    Cancel
+                  </button>
+                  <button type="submit" 
+                          style="flex: 1; padding: 0.75rem; border: none; border-radius: 6px; background: #2f8f44; color: white; font-weight: 600; cursor: pointer;">
+                    Save Changes
+                  </button>
+                </div>
+              </form>
+            </div>
+          `;
+
+          document.body.appendChild(modal);
+
+          document
+            .getElementById("profileForm")
+            .addEventListener("submit", async (e) => {
+              e.preventDefault();
+              await handleProfileSubmit();
+            });
+
+          modal.addEventListener("click", (e) => {
+            if (e.target === modal) closeProfileModal();
+          });
+        } catch (error) {
+          console.error("Error loading profile:", error);
+          modal.innerHTML = `
+            <div style="background: white; border-radius: 12px; padding: 2rem; text-align: center;">
+              <p style="color: #f44336;">Failed to load profile</p>
+              <button onclick="closeProfileModal()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #2f8f44; color: white; border: none; border-radius: 6px; cursor: pointer;">
+                Close
+              </button>
+            </div>
+          `;
+          document.body.appendChild(modal);
+        }
+      }
+
+      async function handleProfileSubmit() {
+        const formData = {
+          fullName: document.getElementById("fullName").value.trim(),
+          phone: document.getElementById("phone").value.trim(),
+          city: document.getElementById("city").value.trim(),
+          address: document.getElementById("address").value.trim(),
+        };
+
+        if (!formData.fullName || !formData.phone || !formData.city) {
+          alert("Please fill all required fields (*)");
+          return;
+        }
+
+        try {
+          const token = localStorage.getItem("token");
+          const response = await fetch(
+            "http://localhost:5000/api/auth/profile",
+            {
+              method: "PUT",
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData),
+            }
+          );
+
+          const data = await response.json();
+
+          if (response.ok && data.success) {
+            localStorage.setItem("user", JSON.stringify(data.user));
+            updateUserInfo();
+            closeProfileModal();
+            alert("Profile updated successfully! 🎉");
+          } else {
+            alert(data.message || "Failed to update profile");
+          }
+        } catch (error) {
+          console.error("Error updating profile:", error);
+          alert("Failed to update profile. Please try again.");
+        }
+      }
+
+      function closeProfileModal() {
+        const modal = document.getElementById("profileModal");
+        if (modal) modal.remove();
+      }
+
+      function viewOrderHistory() {
+        alert("Order history feature coming soon!");
+      }
+      function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+          localStorage.removeItem("token");
+          localStorage.removeItem("user");
+          window.location.href = "../index.html";
+        }
+      }
+    </script>
+  </body>
+</html>

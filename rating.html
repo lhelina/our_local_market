@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Customer Ratings - Farmer Dashboard - Our Local Market</title>
+    <link rel="stylesheet" href="css/farmer-style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      .ratings-container {
+        padding: 20px;
+      }
+
+      .ratings-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .rating-summary-card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 25px;
+        margin-bottom: 30px;
+      }
+
+      .summary-content {
+        display: flex;
+        gap: 40px;
+        align-items: center;
+      }
+
+      .average-rating {
+        text-align: center;
+        min-width: 200px;
+      }
+
+      .average-rating h2 {
+        font-size: 3rem;
+        margin: 0;
+        color: #2f8f44;
+      }
+
+      .average-rating .stars {
+        margin: 10px 0;
+        font-size: 1.2rem;
+        color: #ffc107;
+      }
+
+      .average-rating p {
+        color: #666;
+        margin: 0;
+      }
+
+      .rating-distribution {
+        flex: 1;
+      }
+
+      .distribution-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin: 8px 0;
+      }
+
+      .distribution-bar {
+        flex: 1;
+        height: 8px;
+        background: #eee;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .distribution-fill {
+        height: 100%;
+        background: #ffc107;
+        border-radius: 4px;
+      }
+
+      .reviews-list {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      .reviews-header {
+        padding: 20px;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .filter-reviews {
+        display: flex;
+        gap: 10px;
+      }
+
+      .filter-btn {
+        padding: 6px 12px;
+        border: 1px solid #ddd;
+        background: white;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+
+      .filter-btn.active {
+        background: #2f8f44;
+        color: white;
+        border-color: #2f8f44;
+      }
+
+      .review-item {
+        padding: 20px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .review-item:last-child {
+        border-bottom: none;
+      }
+
+      .review-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .reviewer-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .reviewer-info img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+
+      .reviewer-info h5 {
+        margin: 0;
+        font-size: 16px;
+        color: #333;
+      }
+
+      .review-date {
+        color: #666;
+        font-size: 14px;
+        margin-top: 2px;
+        display: block;
+      }
+
+      .review-rating {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .review-rating .stars {
+        color: #ffc107;
+      }
+
+      .rating-value {
+        font-weight: bold;
+        color: #2f8f44;
+        font-size: 16px;
+      }
+
+      .review-content {
+        margin-left: 55px;
+      }
+
+      .review-content p {
+        margin: 0 0 10px 0;
+        color: #333;
+        line-height: 1.5;
+        font-size: 15px;
+      }
+
+      .review-order-info {
+        display: flex;
+        gap: 15px;
+        font-size: 14px;
+      }
+
+      .order-tag,
+      .product-tag {
+        padding: 4px 12px;
+        background: #f0f0f0;
+        border-radius: 20px;
+        color: #666;
+      }
+
+      .empty-reviews {
+        text-align: center;
+        padding: 60px 20px;
+        color: #6c757d;
+      }
+
+      .empty-reviews i {
+        font-size: 48px;
+        color: #dee2e6;
+        margin-bottom: 20px;
+      }
+
+      .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 20px;
+        border-top: 1px solid #eee;
+      }
+
+      .pagination-btn {
+        padding: 8px 16px;
+        border: 1px solid #ddd;
+        background: white;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .pagination-btn:hover {
+        border-color: #2f8f44;
+        color: #2f8f44;
+      }
+
+      .pagination-btn.active {
+        background: #2f8f44;
+        color: white;
+        border-color: #2f8f44;
+      }
+
+      .pagination-btn:disabled {
+        background: #f8f9fa;
+        color: #6c757d;
+        cursor: not-allowed;
+        border-color: #dee2e6;
+      }
+
+      .star {
+        display: inline-block;
+        color: #ddd;
+      }
+
+      .star.active {
+        color: #ffc107;
+      }
+
+      .fa-star-half-alt {
+        color: #ffc107;
+      }
+
+      .search-reviews {
+        margin-bottom: 20px;
+      }
+
+      .search-reviews input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+
+      .search-reviews input:focus {
+        outline: none;
+        border-color: #2f8f44;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-container">
+      <aside class="sidebar">
+        <div class="logo">
+          <h2>🌾 Our Local Market</h2>
+          <p class="role">Farmer Dashboard</p>
+        </div>
+
+        <nav class="nav-menu">
+          <a href="./farmer-dashboard.html" class="nav-item">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+          </a>
+          <a href="./farmer-dashboard.html" class="nav-item">
+            <i class="fas fa-seedling"></i>
+            <span>My Products</span>
+          </a>
+          <a href="./order.html" class="nav-item">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Orders</span>
+          </a>
+          <a href="./rating.html" class="nav-item active">
+            <i class="fas fa-star-half-alt"></i>
+            <span>Customer Ratings</span>
+          </a>
+          <a href="#" class="nav-item" id="profileBtn">
+            <i class="fas fa-user-circle"></i>
+            <span>My Profile</span>
+          </a>
+          <a href="./index.html" class="nav-item" id="logoutBtn">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+          </a>
+        </nav>
+
+        <div class="user-info">
+          <div class="user-avatar">
+            <img
+              src="https://ui-avatars.com/api/?name=Farm+Owner&background=2f8f44&color=fff"
+              alt="Farmer"
+            />
+          </div>
+          <div class="user-details">
+            <h4>Abebe Tadesse</h4>
+            <p>Sebeta Farm</p>
+            <span class="status online">● Online</span>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="top-bar">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input
+              type="text"
+              placeholder="Search reviews..."
+              id="reviewSearch"
+            />
+          </div>
+          <div class="top-actions">
+            <div class="notifications">
+              <i class="fas fa-bell"></i>
+              <span class="badge">3</span>
+            </div>
+            <div class="user-menu" id="userMenuBtn" style="cursor: pointer">
+              <img
+                src="https://ui-avatars.com/api/?name=Farm+Owner&background=2f8f44&color=fff"
+                alt="User"
+              />
+            </div>
+          </div>
+        </header>
+
+        <div class="ratings-container">
+          <div class="ratings-header">
+            <h2>Customer Ratings & Reviews</h2>
+            <div class="export-actions">
+              <button class="btn-add" onclick="exportRatings()">
+                <i class="fas fa-download"></i> Export Ratings
+              </button>
+            </div>
+          </div>
+
+          <div class="search-reviews">
+            <input
+              type="text"
+              placeholder="Search by customer name, order ID, or review text..."
+              id="searchReviews"
+            />
+          </div>
+
+          <div class="rating-summary-card">
+            <div class="summary-content">
+              <div class="average-rating">
+                <h2 id="averageRating">4.2</h2>
+                <div class="stars" id="averageStars">
+                  <i class="fas fa-star active"></i>
+                  <i class="fas fa-star active"></i>
+                  <i class="fas fa-star active"></i>
+                  <i class="fas fa-star active"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p id="totalReviews">Based on 28 reviews</p>
+              </div>
+              <div class="rating-distribution" id="ratingDistribution">
+                <div class="distribution-item">
+                  <span>5 stars</span>
+                  <div class="distribution-bar">
+                    <div class="distribution-fill" style="width: 60%"></div>
+                  </div>
+                  <span id="fiveStarCount">16</span>
+                </div>
+                <div class="distribution-item">
+                  <span>4 stars</span>
+                  <div class="distribution-bar">
+                    <div class="distribution-fill" style="width: 25%"></div>
+                  </div>
+                  <span id="fourStarCount">7</span>
+                </div>
+                <div class="distribution-item">
+                  <span>3 stars</span>
+                  <div class="distribution-bar">
+                    <div class="distribution-fill" style="width: 10%"></div>
+                  </div>
+                  <span id="threeStarCount">3</span>
+                </div>
+                <div class="distribution-item">
+                  <span>2 stars</span>
+                  <div class="distribution-bar">
+                    <div class="distribution-fill" style="width: 3%"></div>
+                  </div>
+                  <span id="twoStarCount">1</span>
+                </div>
+                <div class="distribution-item">
+                  <span>1 star</span>
+                  <div class="distribution-bar">
+                    <div class="distribution-fill" style="width: 2%"></div>
+                  </div>
+                  <span id="oneStarCount">1</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="reviews-list">
+            <div class="reviews-header">
+              <h3>Customer Reviews</h3>
+              <div class="filter-reviews">
+                <button
+                  class="filter-btn active"
+                  onclick="filterReviews('all')"
+                >
+                  All
+                </button>
+                <button class="filter-btn" onclick="filterReviews('5')">
+                  5 Stars
+                </button>
+                <button class="filter-btn" onclick="filterReviews('4')">
+                  4 Stars
+                </button>
+                <button class="filter-btn" onclick="filterReviews('3')">
+                  3 Stars
+                </button>
+                <button class="filter-btn" onclick="filterReviews('2')">
+                  2 Stars
+                </button>
+                <button class="filter-btn" onclick="filterReviews('1')">
+                  1 Star
+                </button>
+              </div>
+            </div>
+
+            <div id="reviewsContainer">
+              <div class="review-item">
+                <div class="review-header">
+                  <div class="reviewer-info">
+                    <img
+                      src="https://ui-avatars.com/api/?name=John+Doe&background=2f8f44&color=fff"
+                      alt="Customer"
+                    />
+                    <div>
+                      <h5>kebede abebe</h5>
+                      <span class="review-date">2 days ago</span>
+                    </div>
+                  </div>
+                  <div class="review-rating">
+                    <div class="stars">
+                      <i class="fas fa-star active"></i>
+                      <i class="fas fa-star active"></i>
+                      <i class="fas fa-star active"></i>
+                      <i class="fas fa-star active"></i>
+                      <i class="fas fa-star active"></i>
+                    </div>
+                    <span class="rating-value">5.0</span>
+                  </div>
+                </div>
+                <div class="review-content">
+                  <p>
+                    "Excellent quality onions! Fresh and well-packaged. Delivery
+                    was on time and the farmer was very professional."
+                  </p>
+                  <div class="review-order-info">
+                    <span class="order-tag">Order: #ORD-7840</span>
+                    <span class="product-tag">Product: Onions</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="review-item">
+                <div class="review-header">
+                  <div class="reviewer-info">
+                    <img
+                      src="https://ui-avatars.com/api/?name=Sarah+Smith&background=2f8f44&color=fff"
+                      alt="Customer"
+                    />
+                    <div>
+                      <h5>ayele kebede</h5>
+                      <span class="review-date">1 week ago</span>
+                    </div>
+                  </div>
+                  <div class="review-rating">
+                    <div class="stars">
+                      <i class="fas fa-star active"></i>
+                      <i class="fas fa-star active"></i>
+                      <i class="fas fa-star active"></i>
+                      <i class="fas fa-star active"></i>
+                      <i class="far fa-star"></i>
+                    </div>
+                    <span class="rating-value">4.0</span>
+                  </div>
+                </div>
+                <div class="review-content">
+                  <p>
+                    "Good quality apple, but delivery was slightly delayed.
+                    Otherwise satisfied with the purchase."
+                  </p>
+                  <div class="review-order-info">
+                    <span class="order-tag">Order: #ORD-7835</span>
+                    <span class="product-tag">Product: Teff</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pagination" id="pagination">
+              <button
+                class="pagination-btn"
+                onclick="changePage('prev')"
+                id="prevBtn"
+              >
+                <i class="fas fa-chevron-left"></i> Previous
+              </button>
+              <span id="pageInfo">Page 1 of 1</span>
+              <button
+                class="pagination-btn"
+                onclick="changePage('next')"
+                id="nextBtn"
+              >
+                Next <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <div class="modal-overlay" id="profileModal">
+      <div class="modal" style="max-width: 600px">
+        <div class="modal-header">
+          <h3>My Profile</h3>
+          <button class="close-modal" onclick="closeProfileModal()">
+            &times;
+          </button>
+        </div>
+        <div class="modal-body" id="profileModalBody"></div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        loadReviews();
+      });
+
+      function loadReviews() {
+        const savedRatings = localStorage.getItem("customerRatings");
+        if (savedRatings) {
+          const ratings = JSON.parse(savedRatings);
+          const reviewsContainer = document.getElementById("reviewsContainer");
+
+          if (ratings.length > 0) {
+            reviewsContainer.innerHTML = ratings
+              .map(
+                (rating) => `
+                        <div class="review-item">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <img src="https://ui-avatars.com/api/?name=Customer&background=2f8f44&color=fff" alt="Customer" />
+                                    <div>
+                                        <h5>Customer</h5>
+                                        <span class="review-date">${new Date(
+                                          rating.date
+                                        ).toLocaleDateString()}</span>
+                                    </div>
+                                </div>
+                                <div class="review-rating">
+                                    <div class="stars">
+                                        ${getStarsHTML(rating.rating)}
+                                    </div>
+                                    <span class="rating-value">${rating.rating.toFixed(
+                                      1
+                                    )}</span>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <p>"${
+                                  rating.comment || "No comment provided."
+                                }"</p>
+                                <div class="review-order-info">
+                                    <span class="order-tag">Order: ${
+                                      rating.orderId
+                                    }</span>
+                                    <span class="product-tag">Product: Various</span>
+                                </div>
+                            </div>
+                        </div>
+                    `
+              )
+              .join("");
+
+            updateSummary(ratings);
+          }
+        }
+      }
+
+      function getStarsHTML(rating) {
+        let stars = "";
+        for (let i = 1; i <= 5; i++) {
+          if (i <= Math.floor(rating)) {
+            stars += '<i class="fas fa-star active"></i>';
+          } else if (i === Math.ceil(rating) && rating % 1 !== 0) {
+            stars += '<i class="fas fa-star-half-alt"></i>';
+          } else {
+            stars += '<i class="far fa-star"></i>';
+          }
+        }
+        return stars;
+      }
+
+      function updateSummary(ratings) {
+        const totalReviews = ratings.length;
+        const averageRating =
+          totalReviews > 0
+            ? (
+                ratings.reduce((sum, rating) => sum + rating.rating, 0) /
+                totalReviews
+              ).toFixed(1)
+            : 0;
+
+        document.getElementById("averageRating").textContent = averageRating;
+        document.getElementById("averageStars").innerHTML = getStarsHTML(
+          parseFloat(averageRating)
+        );
+        document.getElementById(
+          "totalReviews"
+        ).textContent = `Based on ${totalReviews} reviews`;
+
+        const starCounts = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
+        ratings.forEach((rating) => {
+          starCounts[rating.rating]++;
+        });
+
+        document.getElementById("fiveStarCount").textContent = starCounts[5];
+        document.getElementById("fourStarCount").textContent = starCounts[4];
+        document.getElementById("threeStarCount").textContent = starCounts[3];
+        document.getElementById("twoStarCount").textContent = starCounts[2];
+        document.getElementById("oneStarCount").textContent = starCounts[1];
+      }
+
+      function filterReviews(rating) {
+        document.querySelectorAll(".filter-btn").forEach((btn) => {
+          btn.classList.remove("active");
+        });
+        event.target.classList.add("active");
+      }
+
+      function changePage(direction) {}
+
+      function exportRatings() {
+        alert(
+          "Exporting ratings... This would download a file in a real application."
+        );
+      }
+    </script>
+    <script src="js/farmer-main.js"></script>
+    <script>
+      function showProfileModal() {
+        console.log(" Opening profile manager...");
+
+        const modal = document.getElementById("profileModal");
+        const modalBody = document.getElementById("profileModalBody");
+
+        const user = JSON.parse(localStorage.getItem("user")) || {
+          fullName: "Abebe Tadesse",
+          email: "farmer@example.com",
+          phone: "0911 234 567",
+          city: "Addis Ababa",
+          address: "Sebeta Farm",
+          farmName: "Sebeta Farm",
+          farmLocation: "Sebeta, Oromia",
+        };
+
+        modalBody.innerHTML = `
+    <form id="profileForm">
+      <div class="form-group">
+        <label for="fullName">Full Name *</label>
+        <input type="text" id="fullName" name="fullName" value="${
+          user.fullName || ""
+        }" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" value="${
+          user.email || ""
+        }" disabled 
+               style="background-color: #f5f5f5; cursor: not-allowed;">
+        <small style="color: #666; display: block; margin-top: 0.25rem;">Email cannot be changed</small>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="phone">Phone Number *</label>
+          <input type="tel" id="phone" name="phone" value="${
+            user.phone || ""
+          }" required>
+        </div>
+        <div class="form-group">
+          <label for="city">City *</label>
+          <input type="text" id="city" name="city" value="${
+            user.city || ""
+          }" required>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="address">Address</label>
+        <textarea id="address" name="address" rows="2" placeholder="Street address, area...">${
+          user.address || ""
+        }</textarea>
+      </div>
+      
+      <div class="form-group">
+        <label for="farmName">Farm Name *</label>
+        <input type="text" id="farmName" name="farmName" value="${
+          user.farmName || ""
+        }" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="farmLocation">Farm Location</label>
+        <input type="text" id="farmLocation" name="farmLocation" value="${
+          user.farmLocation || ""
+        }" 
+               placeholder="e.g., Sebeta, Oromia">
+      </div>
+      
+      <div class="form-actions" style="margin-top: 1.5rem;">
+        <button type="button" class="btn-cancel" onclick="closeProfileModal()">Cancel</button>
+        <button type="submit" class="btn-submit">Save Changes</button>
+      </div>
+    </form>
+  `;
+
+        modal.style.display = "flex";
+
+        // Add form submit event listener
+        const form = document.getElementById("profileForm");
+        form.addEventListener("submit", handleProfileSubmit);
+      }
+
+      function closeProfileModal() {
+        const modal = document.getElementById("profileModal");
+        modal.style.display = "none";
+      }
+
+      function handleProfileSubmit(e) {
+        e.preventDefault();
+
+        const form = e.target;
+        const formData = {
+          fullName: form.querySelector("#fullName").value.trim(),
+          phone: form.querySelector("#phone").value.trim(),
+          city: form.querySelector("#city").value.trim(),
+          address: form.querySelector("#address").value.trim(),
+          farmName: form.querySelector("#farmName").value.trim(),
+          farmLocation: form.querySelector("#farmLocation").value.trim(),
+        };
+
+        if (
+          !formData.fullName ||
+          !formData.phone ||
+          !formData.city ||
+          !formData.farmName
+        ) {
+          alert("Please fill all required fields (*)");
+          return;
+        }
+
+        const existingUser = JSON.parse(localStorage.getItem("user")) || {};
+
+        const updatedUser = {
+          ...existingUser,
+          ...formData,
+        };
+
+        localStorage.setItem("user", JSON.stringify(updatedUser));
+
+        updateUserInfoInSidebar(updatedUser);
+
+        alert("Profile updated successfully! 🎉");
+
+        closeProfileModal();
+      }
+
+      function updateUserInfoInSidebar(user) {
+        const nameElement = document.querySelector(".user-details h4");
+        const farmElement = document.querySelector(".user-details p");
+        const avatarImg = document.querySelector(".user-avatar img");
+        const userMenuImg = document.querySelector(".user-menu img");
+
+        if (nameElement) nameElement.textContent = user.fullName || "Farmer";
+        if (farmElement) farmElement.textContent = user.farmName || "Farm";
+
+        const avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(
+          user.fullName || "Farmer"
+        )}&background=2f8f44&color=fff`;
+
+        if (avatarImg) avatarImg.src = avatarUrl;
+        if (userMenuImg) userMenuImg.src = avatarUrl;
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const profileModal = document.getElementById("profileModal");
+        if (profileModal) {
+          profileModal.addEventListener("click", function (e) {
+            if (e.target === profileModal) {
+              closeProfileModal();
+            }
+          });
+        }
+      });
+
+      window.showProfileModal = showProfileModal;
+      window.closeProfileModal = closeProfileModal;
+
+      function checkAuth() {
+        const token = localStorage.getItem("token");
+        const user = JSON.parse(localStorage.getItem("user"));
+
+        console.log("Auth check - Token:", !!token, "User:", !!user);
+
+        if (!token || !user) {
+          console.log("No auth, redirecting to login");
+          window.location.href = "../index.html";
+          return false;
+        }
+
+        if (user.userType !== "farmer") {
+          alert("Access denied. Farmers only.");
+          window.location.href = "../index.html";
+          return false;
+        }
+
+        return true;
+      }
+
+      function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+          localStorage.removeItem("token");
+          localStorage.removeItem("user");
+          window.location.href = "../index.html";
+        }
+      }
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        if (!checkAuth()) return;
+
+        const logoutBtn = document.getElementById("logoutBtn");
+        if (logoutBtn) {
+          logoutBtn.addEventListener("click", logout);
+        }
+
+        const profileBtn = document.getElementById("profileBtn");
+        if (profileBtn) {
+          profileBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            showProfileModal();
+          });
+        }
+
+        const userMenuBtn = document.getElementById("userMenuBtn");
+        if (userMenuBtn) {
+          userMenuBtn.addEventListener("click", () => {
+            showProfileModal();
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

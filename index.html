@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Our Local Market - Fresh Ethiopian Agricultural Products</title>
+    <link rel="stylesheet" href="./css/home-style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="logo">
+          <h1>🌾 Our Local Market</h1>
+          <span>Fresh from Ethiopian Farms</span>
+        </div>
+
+        <ul class="nav-menu">
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#how-it-works">How it Works</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li>
+            <a href="#" class="nav-btn" id="getStartedBtn">Get Started</a>
+          </li>
+        </ul>
+
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+   
+    <section class="hero" id="home">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">
+            Fresh Agricultural Products
+            <span class="highlight">Direct from Ethiopian Farmers</span>
+          </h1>
+          <p class="hero-subtitle">
+            Connecting local farmers with buyers across Ethiopia. Get fresh
+             vegetables, fruits, and grains delivered to your doorstep.
+          </p>
+
+          <div class="hero-stats">
+            <div class="stat">
+              <h3>50+</h3>
+              <p>Farmers</p>
+            </div>
+            <div class="stat">
+              <h3>100+</h3>
+              <p>Products</p>
+            </div>
+            <div class="stat">
+              <h3>150+</h3>
+              <p>Happy Customers</p>
+            </div>
+          </div>
+
+          <div class="hero-buttons">
+            <button class="btn-primary btn-large" id="heroGetStarted">
+              <i class="fas fa-shopping-basket"></i> Start Shopping
+            </button>
+            <button class="btn-outline btn-large" id="heroLearnMore">
+              <i class="fas fa-play-circle"></i> Watch Video
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-image">
+          <div class="image-container">
+            <img
+              src="./pictures/hand.jpg"
+              alt="Ethiopian Farmer"
+            />
+            <div class="floating-card farmer-card">
+              <div class="card-icon">👨‍🌾</div>
+              <h4>Farmers Welcome!</h4>
+              <p>Join our platform to reach more customers</p>
+              <a href="#" class="card-link">Sell Products →</a>
+            </div>
+            <div class="floating-card buyer-card">
+              <div class="card-icon">🛒</div>
+              <h4>Fresh Products</h4>
+              <p>100% organic & locally grown</p>
+              <a href="#" class="card-link">Shop Now →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-indicator">
+        <span>Scroll to explore</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+    </section>
+  </body>
+</html>
+
+<section class="featured-products" id="products">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Featured Products</h2>
+      <p class="section-subtitle">Fresh from local farms to your table</p>
+    </div>
+
+    <div class="products-grid" id="featuredProducts">
+      <!-- Products will be loaded by JavaScript -->
+    </div>
+
+    <div class="text-center">
+      <a href="#" class="btn-secondary">View All Products →</a>
+    </div>
+  </div>
+</section>
+
+
+<section class="how-it-works" id="how-it-works">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">
+        እንዴት ይሠራል? 
+      </h2>
+      <p class="section-subtitle">በ3 ቀላል ደረጃዎች ከአካባቢዎ አርሶ አደር ቀጥታ ማዘዝ</p>
+    </div>
+
+    <div class="steps-container">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <div class="step-icon">📱</div>
+        <h3>መመዝገቢያ</h3>
+        <p>እንደ ገዢ ወይም አርሶ አደር በመለያ ይመዝገቡ</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <div class="step-icon">🛒</div>
+        <h3>ምርቶችን ይምረጡ</h3>
+        <p>ከአቅራቢያዎ አርሶ አደሮች የተለያዩ ተፈጥሯዊ ምርቶችን ይምረጡ</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <div class="step-icon">🚚</div>
+        <h3>ማድረስ</h3>
+        <p>በ24 ሰዓት ውስጥ ወደ ቤትዎ ይደርሳል</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">4</div>
+        <div class="step-icon">💳</div>
+        <h3>ክፍያ</h3>
+        <p>በChapa ወይም በጥሬ ገንዘብ በማድረስ ጊዜ ይክፈሉ</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-posters" id="about">
+  <div class="container">
+    <div class="posters-grid">
+      <div class="poster-card mission-poster">
+        <div class="poster-overlay"></div>
+        <div class="poster-content">
+          <h2>Our Mission</h2>
+          <p>
+            To empower Ethiopian farmers by providing them with direct access to
+            markets while ensuring consumers get the freshest, most affordable
+            agricultural products.
+          </p>
+          <ul class="mission-list">
+            <li>
+              <i class="fas fa-check-circle"></i> Support local agriculture
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i> Ensure fair prices for farmers
+            </li>
+            <li><i class="fas fa-check-circle"></i> Reduce food waste</li>
+            <li>
+              <i class="fas fa-check-circle"></i> Promote sustainable farming
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="poster-card vision-poster">
+        <div class="poster-overlay"></div>
+        <div class="poster-content">
+          <h2>Our Vision</h2>
+          <p>
+           To become Ethiopia's leading digital agricultural marketplace, directly connecting every farmer with every consumer across the nation—eliminating layers of middlemen to reduce living expenses, ease life's hardships, and build a more prosperous agricultural ecosystem where value flows fairly to those who grow our food and those who consume it.
+          </p>
+          <div class="vision-stats">
+            <div class="vision-stat"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Join Our Growing Community?</h2>
+                <p>Whether you're a farmer looking to sell or a buyer looking for fresh products, we've got you covered.</p>
+                
+                <div class="cta-buttons">
+                    <button class="btn-primary btn-xlarge" id="ctaRegister">
+                        <i class="fas fa-user-plus"></i> Register Now
+                    </button>
+                    <button class="btn-outline btn-xlarge" id="ctaLogin">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                </div>
+                
+                <div class="trust-badges">
+                    <div class="badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Secure Payment</span>
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-truck"></i>
+                        <span>Fast Delivery</span>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+ 
+    <div class="modal-overlay" id="authModal">
+        <div class="modal" id="authModalContent">
+          
+        </div>
+    </div>
+
+ 
+    <footer class="footer" id="contact">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <div class="footer-logo">
+                            <h2>🌾 Our Local Market</h2>
+                            <p>Connecting Ethiopian farmers with consumers since 2025</p>
+                        </div>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-telegram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <h3>For Buyers</h3>
+                        <ul>
+                            <li><a href="#">Browse Products</a></li>
+                            <li><a href="#">How to Order</a></li>
+                            <li><a href="#">Payment Methods</a></li>
+                            <li><a href="#">Delivery Information</a></li>
+                            <li><a href="#">Return Policy</a></li>
+                        </ul>
+                    </div>  
+                    <div class="footer-col">
+                        <h3>For Farmers</h3>
+                        <ul>
+                            <li><a href="#">Sell on Our Platform</a></li>
+                            <li><a href="#">Farmer Dashboard</a></li>
+                           
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                           
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <h3>Contact Us</h3>
+                        <div class="contact-info">
+                            <p><i class="fas fa-map-marker-alt"></i> Addis Ababa, Ethiopia</p>
+                            <p><i class="fas fa-phone"></i> +251 911 234 567</p>
+                            <p><i class="fas fa-envelope"></i> info@ourlocalmarket.com</p>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-middle">
+            <div class="container">
+                <div class="newsletter">
+                    <h3>Stay Updated</h3>
+                    <p>Subscribe to our newsletter for the latest offers and farming tips</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2026 Our Local Market. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                        
+                    </div>
+                    <div class="payment-methods">
+                       
+                       
+                        <img src="https://chapa.co/static/media/chapa-logo-black.2c637d71.svg" alt="Chapa" height="20">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/home.js"></script>
+    <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const token = localStorage.getItem("token");
+    
+    if (token && user) {
+     
+      const getStartedBtn = document.getElementById('getStartedBtn');
+      const heroGetStarted = document.getElementById('heroGetStarted');
+      const ctaRegister = document.getElementById('ctaRegister');
+      
+      if (getStartedBtn) {
+        getStartedBtn.textContent = user.userType === 'farmer' ? '👨‍🌾 Dashboard' : '🛒 Continue Shopping';
+        getStartedBtn.onclick = function() {
+          if (user.userType === 'farmer') {
+            window.location.href = 'farmer-dashboard.html';
+          } else {
+            window.location.href = 'shop.html';
+          }
+        };
+      }
+      
+      if (heroGetStarted) {
+        heroGetStarted.textContent = user.userType === 'farmer' ? '👨‍🌾 Dashboard' : '🛒 Continue Shopping';
+        heroGetStarted.onclick = function() {
+          if (user.userType === 'farmer') {
+            window.location.href = 'farmer-dashboard.html';
+          } else {
+            window.location.href = 'shop.html';
+          }
+        };
+      }
+      
+      if (ctaRegister) {
+        ctaRegister.style.display = 'none';
+      }
+      
+      const ctaLogin = document.getElementById('ctaLogin');
+      if (ctaLogin) {
+        ctaLogin.innerHTML = '<i class="fas fa-sign-out-alt"></i> Logout';
+        ctaLogin.onclick = function() {
+          if (confirm("Are you sure you want to logout?")) {
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+            localStorage.removeItem("userType");
+            localStorage.removeItem("cart");
+            location.reload();
+          }
+        };
+      }
+    }
+  });
+</script>
+</body>
+</html>

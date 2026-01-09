@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Order Confirmed - Our Local Market</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      .rating-section {
+        margin: 30px 0;
+        padding: 25px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        display: none;
+      }
+
+      .rating-section.show {
+        display: block;
+      }
+
+      .rating-title {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #2f8f44;
+      }
+
+      .stars-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin: 20px 0;
+      }
+
+      .star {
+        font-size: 2.5rem;
+        color: #ddd;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .star.active {
+        color: #ffc107;
+      }
+
+      .star:hover,
+      .star:hover ~ .star {
+        color: #ffc107;
+      }
+
+      .rating-feedback {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .rating-feedback textarea {
+        width: 100%;
+        max-width: 500px;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 14px;
+        resize: vertical;
+        margin: 10px auto;
+        display: block;
+      }
+
+      .rating-feedback textarea:focus {
+        outline: none;
+        border-color: #2f8f44;
+      }
+
+      .rating-actions {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .rating-note {
+        text-align: center;
+        font-size: 0.9rem;
+        color: #666;
+        margin-top: 10px;
+        font-style: italic;
+      }
+
+      #ratingMessage {
+        text-align: center;
+        padding: 10px;
+        margin-top: 15px;
+        border-radius: 5px;
+        display: none;
+      }
+
+      #ratingMessage.success {
+        background: #d4edda;
+        color: #155724;
+        display: block;
+      }
+
+      #ratingMessage.error {
+        background: #f8d7da;
+        color: #721c24;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-container">
+      <header class="navbar">
+        <div class="logo">
+          <h1>Our Local Market</h1>
+          <span>Local agricultural trade</span>
+        </div>
+
+        <div class="search-box">
+          <input
+            type="text"
+            placeholder="Search products..."
+            onclick="window.location.href='index.html'"
+          />
+        </div>
+
+        <div class="nav-actions">
+          <a href="cart.html" class="basket">
+            🛒 Cart <span id="cartCount">0</span>
+          </a>
+          <div class="account">👤 Buyer</div>
+        </div>
+      </header>
+
+      <main class="success-container">
+        <div class="success-card">
+          <div class="success-icon">✓</div>
+          <h2>Order Confirmed!</h2>
+          <p class="success-message">
+            Thank you for your purchase. Your order has been received and is
+            being processed.
+          </p>
+
+          <div class="order-details" id="orderDetails"></div>
+
+          <div class="rating-section" id="ratingSection">
+            <h3 class="rating-title">Rate Your Purchase Experience</h3>
+            <p style="text-align: center; color: #666">
+              Your order has been delivered! Please share your experience with
+              the farmer.
+            </p>
+
+            <div class="stars-container">
+              <div class="star" data-value="1"><i class="fas fa-star"></i></div>
+              <div class="star" data-value="2"><i class="fas fa-star"></i></div>
+              <div class="star" data-value="3"><i class="fas fa-star"></i></div>
+              <div class="star" data-value="4"><i class="fas fa-star"></i></div>
+              <div class="star" data-value="5"><i class="fas fa-star"></i></div>
+            </div>
+
+            <div class="rating-feedback">
+              <input type="hidden" id="selectedRating" value="0" />
+              <p style="margin-bottom: 10px">Add a comment (optional):</p>
+              <textarea
+                id="ratingComment"
+                placeholder="Share your experience with the product quality, delivery, and farmer service..."
+                rows="4"
+              ></textarea>
+
+              <div class="rating-actions">
+                <button class="btn-primary" id="submitRating">
+                  Submit Rating
+                </button>
+                <button class="btn-secondary" id="skipRating">Skip</button>
+              </div>
+
+              <div id="ratingMessage"></div>
+
+              <p class="rating-note">
+                Your rating helps improve our farmers' service quality.
+              </p>
+            </div>
+          </div>
+
+          <div class="delivery-info">
+            <h4>What's Next?</h4>
+            <ul>
+              <li>📞 You will receive a confirmation call within 30 minutes</li>
+              <li>🚚 Your order will be delivered within 24 hours</li>
+              <li>💳 Payment verification (if paid online)</li>
+              <li>📦 Quality check before dispatch</li>
+            </ul>
+          </div>
+
+          <div class="success-actions">
+            <a href="index.html" class="btn-primary">Continue Shopping</a>
+            <a href="#" class="btn-secondary" id="printReceipt"
+              >Print Receipt</a
+            >
+          </div>
+
+          <p class="contact-note">
+            Need help? Call us at <strong>0911 234 567</strong> or email
+            <strong>support@ourlocalmarket.com</strong>
+          </p>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <p>✔ Local Farmers &nbsp; ✔ Fresh Products &nbsp; ✔ Secure Payment</p>
+        <p>© 2025 Our Local Market</p>
+      </footer>
+    </div>
+
+    <script src="./js/success.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderDelivered =
+          urlParams.get("delivered") === "true" ||
+          localStorage.getItem("orderDelivered") === "true";
+
+        if (orderDelivered) {
+          const ratingSection = document.getElementById("ratingSection");
+          ratingSection.classList.add("show");
+
+          const successMessage = document.querySelector(".success-message");
+          successMessage.innerHTML = `
+            Thank you for your purchase! Your order has been successfully delivered.
+            We hope you enjoy your fresh products!
+          `;
+
+          const successIcon = document.querySelector(".success-icon");
+          successIcon.innerHTML = "🎉";
+        }
+
+        const stars = document.querySelectorAll(".star");
+        const selectedRatingInput = document.getElementById("selectedRating");
+
+        stars.forEach((star) => {
+          star.addEventListener("click", function () {
+            const value = parseInt(this.getAttribute("data-value"));
+            selectedRatingInput.value = value;
+
+            stars.forEach((s) => s.classList.remove("active"));
+
+            for (let i = 0; i < value; i++) {
+              stars[i].classList.add("active");
+            }
+          });
+
+          star.addEventListener("mouseover", function () {
+            const value = parseInt(this.getAttribute("data-value"));
+
+            stars.forEach((s) => s.classList.remove("active"));
+
+            for (let i = 0; i < value; i++) {
+              stars[i].classList.add("active");
+            }
+          });
+        });
+
+        document
+          .querySelector(".stars-container")
+          .addEventListener("mouseleave", function () {
+            const currentValue = parseInt(selectedRatingInput.value);
+
+            stars.forEach((s) => s.classList.remove("active"));
+
+            for (let i = 0; i < currentValue; i++) {
+              stars[i].classList.add("active");
+            }
+          });
+
+        document
+          .getElementById("submitRating")
+          .addEventListener("click", function () {
+            const rating = parseInt(selectedRatingInput.value);
+            const comment = document
+              .getElementById("ratingComment")
+              .value.trim();
+
+            if (rating === 0) {
+              showMessage(
+                "Please select a rating by clicking the stars.",
+                "error"
+              );
+              return;
+            }
+
+            const ratingData = {
+              orderId: getOrderIdFromPage(),
+              rating: rating,
+              comment: comment,
+              date: new Date().toISOString(),
+            };
+
+            const ratings = JSON.parse(
+              localStorage.getItem("customerRatings") || "[]"
+            );
+            ratings.push(ratingData);
+            localStorage.setItem("customerRatings", JSON.stringify(ratings));
+
+            showMessage(
+              "Thank you for your feedback! Your rating has been submitted.",
+              "success"
+            );
+
+            setTimeout(() => {
+              document.getElementById("ratingSection").innerHTML = `
+              <div style="text-align: center; padding: 20px;">
+                <h3 style="color: #2f8f44;">✓ Rating Submitted!</h3>
+                <p>Thank you for sharing your experience.</p>
+              </div>
+            `;
+            }, 2000);
+          });
+
+        document
+          .getElementById("skipRating")
+          .addEventListener("click", function () {
+            document.getElementById("ratingSection").style.display = "none";
+          });
+
+        function showMessage(text, type) {
+          const messageDiv = document.getElementById("ratingMessage");
+          messageDiv.textContent = text;
+          messageDiv.className = type;
+        }
+
+        function getOrderIdFromPage() {
+          const urlParams = new URLSearchParams(window.location.search);
+          return (
+            urlParams.get("orderId") || "ORD-" + Date.now().toString().slice(-6)
+          );
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Checkout - Our Local Market</title>
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <script src="https://checkout.chapa.co/checkout.js" defer></script>
+  </head>
+  <body>
+    <div class="app-container">
+      <header class="navbar">
+        <div class="logo">
+          <h1>Our Local Market</h1>
+          <span>Local agricultural trade</span>
+        </div>
+
+        <div class="search-box">
+          <input
+            type="text"
+            placeholder="Search products..."
+            onclick="window.location.href='index.html'"
+          />
+        </div>
+
+        <div class="nav-actions">
+          <a href="cart.html" class="basket">
+            🛒 Cart <span id="cartCount">0</span>
+          </a>
+          <div class="account">👤 Buyer</div>
+        </div>
+      </header>
+
+      <main class="checkout-container">
+        <div class="checkout-header">
+          <h2>Complete Your Purchase</h2>
+          <a href="cart.html" class="back-to-cart">← Back to Cart</a>
+        </div>
+
+        <div class="checkout-content">
+          <div class="order-summary">
+            <h3>Order Summary</h3>
+            <div class="order-items" id="orderItems"></div>
+            <div class="order-totals">
+              <div class="total-row">
+                <span>Subtotal</span>
+                <span id="orderSubtotal">0 ETB</span>
+              </div>
+              <div class="total-row">
+                <span>Delivery Fee</span>
+                <span>50 ETB</span>
+              </div>
+              <div class="total-row grand-total">
+                <span>Total Amount</span>
+                <span id="orderTotal">0 ETB</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="customer-info">
+            <h3>Delivery Information</h3>
+
+            <form id="checkoutForm">
+              <div class="form-group">
+                <label for="fullName">Full Name *</label>
+                <input
+                  type="text"
+                  id="fullName"
+                  name="fullName"
+                  required
+                  placeholder="John Doe"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="john@example.com"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  required
+                  placeholder="0912345678"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="address">Delivery Address *</label>
+                <textarea
+                  id="address"
+                  name="address"
+                  rows="3"
+                  required
+                  placeholder="House number, street, kebele, etc."
+                ></textarea>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="city">City *</label>
+                  <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    required
+                    value="Addis Ababa"
+                    readonly
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="subcity">Sub-city *</label>
+                  <select id="subcity" name="subcity" required>
+                    <option value="">Select sub-city</option>
+                    <option value="bole">Bole</option>
+                    <option value="kirkos">Kirkos</option>
+                    <option value="lideta">Lideta</option>
+                    <option value="akaki">Akaki</option>
+                    <option value="yeka">Yeka</option>
+                    <option value="gulele">Gulele</option>
+                    <option value="nifas-silk">Nifas Silk</option>
+                    <option value="addis-ketema">Addis Ketema</option>
+                    <option value="kolfe">Kolfe</option>
+                    <option value="arada">Arada</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="notes">Delivery Notes (Optional)</label>
+                <textarea
+                  id="notes"
+                  name="notes"
+                  rows="2"
+                  placeholder="Special instructions for delivery"
+                ></textarea>
+              </div>
+
+              <div class="payment-methods">
+                <h4>Payment Method</h4>
+                <div class="payment-options">
+                  <label class="payment-option selected">
+                    <input type="radio" name="payment" value="chapa" checked />
+                    <span>Chapa Payment</span>
+                    <img
+                      src="https://chapa.co/static/media/chapa-logo-black.2c637d71.svg"
+                      alt="Chapa"
+                      height="20"
+                    />
+                  </label>
+                  <label class="payment-option">
+                    <input type="radio" name="payment" value="cash" />
+                    <span>Cash on Delivery</span>
+                    <span class="cash-icon">💵</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="terms-agreement">
+                <label>
+                  <input type="checkbox" id="terms" name="terms" required />
+                  <span
+                    >I agree to the <a href="#">Terms & Conditions</a> and
+                    understand that my order will be processed within 24
+                    hours.</span
+                  >
+                </label>
+              </div>
+
+              <button type="submit" class="pay-now-btn" id="payNowBtn">
+                Pay with Chapa
+              </button>
+
+              <button
+                type="button"
+                class="cod-btn"
+                id="codBtn"
+                style="display: none"
+              >
+                Place Order (Cash on Delivery)
+              </button>
+            </form>
+          </div>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <p>✔ Local Farmers &nbsp; ✔ Fresh Products &nbsp; ✔ Secure Payment</p>
+        <p>© 2025 Our Local Market</p>
+      </footer>
+    </div>
+
+    <script src="./js/checkout.js"></script>
+  </body>
+</html>

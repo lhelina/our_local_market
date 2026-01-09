@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Farmer Dashboard - Our Local Market</title>
+    <link rel="stylesheet" href="../css/farmer-style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    
+  </head>
+  <body>
+    
+    <div class="app-container">
+      <aside class="sidebar">
+        <div class="logo">
+          <h2>🌾 Our Local Market</h2>
+          <p class="role">Farmer Dashboard</p>
+        </div>
+
+        <nav class="nav-menu">
+          <a href="./farmer-dashboard.html" class="nav-item active">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+          </a>
+          <a href="./farmer-dashboard.html" class="nav-item">
+            <i class="fas fa-seedling"></i>
+            <span>My Products</span>
+          </a>
+          <a href="./order.html" class="nav-item">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Orders</span>
+            <span class="badge">6</span>
+          </a>
+
+          <a href="./rating.html" class="nav-item" id="ratingsBtn">
+            <i class="fas fa-star-half-alt"></i>
+            <span>Customer Ratings</span>
+          </a>
+          <a href="#" class="nav-item" id="profileBtn">
+            <i class="fas fa-user-circle"></i>
+            <span>My Profile</span>
+          </a>
+          <a href="#" class="nav-item" id="logoutBtn">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+          </a>
+        </nav>
+
+        <div class="user-info">
+          <div class="user-avatar">
+            <img
+              src="https://ui-avatars.com/api/?name=Farm+Owner&background=2f8f44&color=fff"
+              alt="Farmer"
+            />
+          </div>
+          <div class="user-details">
+            <h4>Abebe Tadesse</h4>
+            <p>Sebeta Farm</p>
+            <span class="status online">● Online</span>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="top-bar">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search orders, products..." />
+          </div>
+          <div class="top-actions">
+            <button class="btn-add">
+              <i class="fas fa-plus"></i> Add Product
+            </button>
+            <div class="notifications">
+              <i class="fas fa-bell"></i>
+              <span class="badge">3</span>
+            </div>
+            <div class="user-menu" id="userMenuBtn" style="cursor: pointer">
+              <img
+                src="https://ui-avatars.com/api/?name=Farm+Owner&background=2f8f44&color=fff"
+                alt="User"
+              />
+            </div>
+          </div>
+        </header>
+
+        <div class="dashboard-content">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon" style="background: rgba(47, 143, 68, 0.1)">
+                <i class="fas fa-wallet" style="color: #2f8f44"></i>
+              </div>
+              <div class="stat-info">
+                <h3>10,250 ETB</h3>
+                <p>Total Sales</p>
+              </div>
+              <span class="stat-trend up">+12.5%</span>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon" style="background: rgba(255, 152, 0, 0.1)">
+                <i class="fas fa-shopping-cart" style="color: #ff9800"></i>
+              </div>
+              <div class="stat-info">
+                <h3>24</h3>
+                <p>Active Orders</p>
+              </div>
+              <span class="stat-trend up">+8.2%</span>
+            </div>
+
+            <div class="stat-card">
+              <div
+                class="stat-icon"
+                style="background: rgba(33, 150, 243, 0.1)"
+              >
+                <i class="fas fa-seedling" style="color: #2196f3"></i>
+              </div>
+              <div class="stat-info">
+                <h3>8</h3>
+                <p>Active Products</p>
+              </div>
+              <span class="stat-trend up">+2</span>
+            </div>
+
+            <div class="stat-card">
+              <div
+                class="stat-icon"
+                style="background: rgba(156, 39, 176, 0.1)"
+              >
+                <i class="fas fa-star" style="color: #9c27b0"></i>
+              </div>
+              <div class="stat-info">
+                <h3>4.2</h3>
+                <p>Average Rating</p>
+              </div>
+              <span class="stat-trend up">+0.3</span>
+            </div>
+          </div>
+
+          <div class="content-grid">
+            <div class="card products-table">
+              <div class="card-header">
+                <h3>My Products</h3>
+                <button class="btn-small">
+                  <i class="fas fa-plus"></i> Add New
+                </button>
+              </div>
+              <div class="table-container">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th>Price</th>
+                      <th>Quantity</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="product-info">
+                        <img src="../pictures/onions.jpg" alt="Onions" />
+                        <div>
+                          <h4>Onions</h4>
+                          <p>Vegetables</p>
+                        </div>
+                      </td>
+                      <td class="price">25 ETB/kg</td>
+                      <td>
+                        <div class="quantity">
+                          <span class="stock">155 kg</span>
+                          <div class="progress-bar">
+                            <div class="progress-fill" style="width: 78%"></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="status-badge active">Active</span>
+                      </td>
+                      <td class="actions">
+                        <button class="action-btn edit">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="action-btn delete">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="product-info">
+                        <img src="../pictures/tomatoes.jpg" alt="Teff" />
+                        <div>
+                          <h4>Tomatoes</h4>
+                          <p>Vegetables
+
+
+
+                          </p>
+                        </div>
+                      </td>
+                      <td class="price">30 ETB/kg</td>
+                      <td>
+                        <div class="quantity">
+                          <span class="stock">300 kg</span>
+                          <div class="progress-bar">
+                            <div class="progress-fill" style="width: 60%"></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="status-badge active">Active</span>
+                      </td>
+                      <td class="actions">
+                        <button class="action-btn edit">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="action-btn delete">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="product-info">
+                        <img src="../pictures/tomatoes.jpg" alt="Tomatoes" />
+                        <div>
+                          <h4>Tomatoes</h4>
+                          <p>Vegetables</p>
+                        </div>
+                      </td>
+                      <td class="price">20 ETB/kg</td>
+                      <td>
+                        <div class="quantity">
+                          <span class="stock">30 kg</span>
+                          <div class="progress-bar">
+                            <div class="progress-fill" style="width: 15%"></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="status-badge low">Low Stock</span>
+                      </td>
+                      <td class="actions">
+                        <button class="action-btn edit">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="action-btn delete">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="product-info">
+                        <img src="../pictures/potatoes.jpg" alt="Potatoes" />
+                        <div>
+                          <h4>Potatoes</h4>
+                          <p>Vegetables</p>
+                        </div>
+                      </td>
+                      <td class="price">15 ETB/kg</td>
+                      <td>
+                        <div class="quantity">
+                          <span class="stock">0 kg</span>
+                          <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="status-badge out">Out of Stock</span>
+                      </td>
+                      <td class="actions">
+                        <button class="action-btn edit">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="action-btn delete">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="side-cards">
+<div class="card">
+  <div class="card-header">
+    <h3>Recent Orders</h3>
+    <a href="#" class="view-all">View All</a>
+  </div>
+  <div class="orders-list">
+    <div class="order-item">
+      <div class="order-info">
+        <h4>#ORD-7842</h4>
+        <p>5 items • 2 hours ago</p>
+        <div class="order-actions">
+          <button class="btn-small btn-primary" onclick="viewOrderDetails('ORD-7842')">
+            <i class="fas fa-eye"></i> View
+          </button>
+          <button class="btn-small btn-success" onclick="markAsDelivered('ORD-7842')">
+            <i class="fas fa-truck"></i> Mark Delivered
+          </button>
+        </div>
+      </div>
+      <div class="order-status">
+        <span class="status processing">Processing</span>
+        <span class="amount">450 ETB</span>
+      </div>
+    </div>
+    
+    <div class="order-item">
+      <div class="order-info">
+        <h4>#ORD-7841</h4>
+        <p>3 items • 5 hours ago</p>
+        <div class="order-actions">
+          <button class="btn-small btn-primary" onclick="viewOrderDetails('ORD-7841')">
+            <i class="fas fa-eye"></i> View
+          </button>
+          <button class="btn-small btn-success" onclick="markAsDelivered('ORD-7841')">
+            <i class="fas fa-truck"></i> Mark Delivered
+          </button>
+        </div>
+      </div>
+      <div class="order-status">
+        <span class="status shipped">Shipped</span>
+        <span class="amount">280 ETB</span>
+      </div>
+    </div>
+    
+    <div class="order-item">
+      <div class="order-info">
+        <h4>#ORD-7840</h4>
+        <p>2 items • 1 day ago</p>
+        <div class="order-actions">
+          <button class="btn-small btn-primary" onclick="viewOrderDetails('ORD-7840')">
+            <i class="fas fa-eye"></i> View
+          </button>
+          <button class="btn-small btn-success" onclick="markAsDelivered('ORD-7840')">
+            <i class="fas fa-truck"></i> Mark Delivered
+          </button>
+        </div>
+      </div>
+      <div class="order-status">
+        <span class="status delivered">Delivered</span>
+        <span class="amount">150 ETB</span>
+      </div>
+    </div>
+    
+    <div class="order-item">
+      <div class="order-info">
+        <h4>#ORD-7839</h4>
+        <p>8 items • 2 days ago</p>
+        <div class="order-actions">
+          <button class="btn-small btn-primary" onclick="viewOrderDetails('ORD-7839')">
+            <i class="fas fa-eye"></i> View
+          </button>
+          <button class="btn-small btn-success" onclick="markAsDelivered('ORD-7839')">
+            <i class="fas fa-truck"></i> Mark Delivered
+          </button>
+        </div>
+      </div>
+      <div class="order-status">
+        <span class="status pending">Pending</span>
+        <span class="amount">620 ETB</span>
+      </div>
+    </div>
+  </div>
+</div>
+              </div>
+
+              <!-- Quick Stats -->
+              <div class="card">
+                <div class="card-header">
+                  <h3>Quick Stats</h3>
+                </div>
+                <div class="quick-stats">
+                  <div class="stat-item">
+                    <div class="stat-label">
+                      <i class="fas fa-clock" style="color: #ff9800"></i>
+                      <span>Pending Orders</span>
+                    </div>
+                    <span class="stat-value">6</span>
+                  </div>
+                  <div class="stat-item">
+                    <div class="stat-label">
+                      <i class="fas fa-check-circle" style="color: #4caf50"></i>
+                      <span>Completed</span>
+                    </div>
+                    <span class="stat-value">42</span>
+                  </div>
+                  <div class="stat-item">
+                    <div class="stat-label">
+                      <i class="fas fa-users" style="color: #2196f3"></i>
+                      <span>Customers</span>
+                    </div>
+                    <span class="stat-value">28</span>
+                  </div>
+                  <div class="stat-item">
+                    <div class="stat-label">
+                      <i class="fas fa-star" style="color: #ffc107"></i>
+                      <span>Rating</span>
+                    </div>
+                    <span class="stat-value">4.2/5</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Performance Chart -->
+          <div class="card chart-card">
+            <div class="card-header">
+              <h3>Sales Performance (Last 7 Days)</h3>
+              <select class="period-select">
+                <option>Weekly</option>
+                <option>Monthly</option>
+                <option>Yearly</option>
+              </select>
+            </div>
+            <div class="chart-placeholder">
+              <div class="chart-bars">
+                <div
+                  class="chart-bar"
+                  style="height: 60%"
+                  data-day="Mon"
+                  data-value="1200"
+                ></div>
+                <div
+                  class="chart-bar"
+                  style="height: 80%"
+                  data-day="Tue"
+                  data-value="1600"
+                ></div>
+                <div
+                  class="chart-bar"
+                  style="height: 45%"
+                  data-day="Wed"
+                  data-value="900"
+                ></div>
+                <div
+                  class="chart-bar"
+                  style="height: 95%"
+                  data-day="Thu"
+                  data-value="1900"
+                ></div>
+                <div
+                  class="chart-bar"
+                  style="height: 70%"
+                  data-day="Fri"
+                  data-value="1400"
+                ></div>
+                <div
+                  class="chart-bar"
+                  style="height: 85%"
+                  data-day="Sat"
+                  data-value="1700"
+                ></div>
+                <div
+                  class="chart-bar"
+                  style="height: 50%"
+                  data-day="Sun"
+                  data-value="1000"
+                ></div>
+              </div>
+              <div class="chart-labels">
+                <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span
+                ><span>Fri</span><span>Sat</span><span>Sun</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <div class="modal-overlay" id="productModal">
+      <div class="modal">
+        <div class="modal-header">
+          <h3 id="modalTitle">Add New Product</h3>
+          <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body" id="modalBody">
+          <!-- This will be filled by JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="profileModal">
+      <div class="modal" style="max-width: 600px">
+        <div class="modal-header">
+          <h3>My Profile</h3>
+          <button class="close-modal" onclick="closeProfileModal()">
+            &times;
+          </button>
+        </div>
+        <div class="modal-body" id="profileModalBody">
+          <!-- Profile form will be loaded here -->
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/farmer-main.js"></script>
+    <script src="./js/auth-check.js"></script>
+    
+  </body>
+</html>

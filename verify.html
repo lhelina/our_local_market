@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Email Verification</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 80px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Verifying your email...</h2>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get("token");
+
+      if (!token) {
+        document.body.innerHTML = "<h2>Invalid verification link</h2>";
+      } else {
+        fetch(`http://localhost:5000/api/auth/verify?token=${token}`)
+          .then((res) => res.text())
+          .then((msg) => {
+            document.body.innerHTML = `
+            <h2>${msg}</h2>
+            <p>You can now log in.</p>
+            <a href="index.html">Go to Login</a>
+          `;
+          })
+          .catch(() => {
+            document.body.innerHTML = "<h2>Verification failed</h2>";
+          });
+      }
+    </script>
+  </body>
+</html>
